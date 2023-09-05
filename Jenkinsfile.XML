@@ -56,7 +56,7 @@ pipeline {
     post {
         failure {
             // Send notification email on failure with logs as an attachment.
-            
+            echo "test"
                 mail to: "dylan21davies@gmail.com",
                 subject: "Pipeline Failed",
                 body: "The Jenkins pipeline has failed. Please check the attached logs for details.",
@@ -65,7 +65,7 @@ pipeline {
         }
         success {
             // Send notification email on success with logs as an attachment.
-            
+            echo "test"
                 mail to: "dylan21davies@gmail.com",
                 subject: "Pipeline Succeeded",
                 body: "The Jenkins pipeline has succeeded.",
