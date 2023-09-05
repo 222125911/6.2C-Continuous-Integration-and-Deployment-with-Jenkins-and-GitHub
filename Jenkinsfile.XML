@@ -1,51 +1,62 @@
 pipeline {
     agent any
 
-    environment {
-        DIRECTORY_PATH = "/Documents/Deakin University/SIT223: Professional Practice in Information Technology/Tasks/5.1P/SIT223_Task5.1P"
-        TESTING_ENVIRONMENT = "Jenkins"
-        PRODUCTION_ENVIRONMENT = "Dylan"
+    stages {
+        stage('Build') {
+            steps {
+                // Use your chosen build automation tool (e.g., Maven) to compile and package the code.
+            }
+        }
+        stage('Unit and Integration Tests') {
+            steps {
+                // Use your chosen test automation tools to run unit and integration tests.
+            }
+        }
+        stage('Code Analysis') {
+            steps {
+                // Integrate a code analysis tool (e.g., SonarQube) to analyze the code.
+            }
+        }
+        stage('Security Scan') {
+            steps {
+                // Integrate a security scanning tool (e.g., OWASP ZAP) to identify vulnerabilities.
+            }
+        }
+        stage('Deploy to Staging') {
+            steps {
+                // Deploy the application to a staging server (e.g., AWS EC2).
+            }
+        }
+        stage('Integration Tests on Staging') {
+            steps {
+                // Run integration tests on the staging environment.
+            }
+        }
+        stage('Deploy to Production') {
+            steps {
+                // Deploy the application to a production server (e.g., AWS EC2).
+            }
+        }
     }
 
-    stages{
-
-        stage('Build'){
-            steps{
-                echo "Fetch the source code from the directory path ${env.DIRECTORY_PATH} specified by $env.PRODUCTION_ENVIRONMENT"
-                echo "Compile the code and generate any necessary artifacts"
-            }
+    post {
+        failure {
+            // Send notification email on failure with logs as an attachment.
+            emailext(
+                subject: "Pipeline Failed",
+                body: "The Jenkins pipeline has failed. Please check the attached logs for details.",
+                to: "your@email.com",
+                attachLog: true
+            )
         }
-
-        stage('Test'){
-            steps{
-                echo "Unit tests"
-                echo "Integration tests"
-            }
-        }
-
-        stage('Code Quality Check'){
-            steps{
-                echo "Check the quality of the code"
-            }
-        }
-
-        stage('Deploy'){
-            steps{
-                echo "Deploy the application to the testing environment ${env.TESTING_ENVIRONMENT}"
-            }
-        }
-
-        stage('Approval'){
-            steps{
-                sleep(time: 10, unit: 'SECONDS')
-            }
-        }
-
-        stage('Deploy to Production'){
-            steps{
-                echo "Deployment completed by ${env.PRODUCTION_ENVIRONMENT} using the ${env.TESTING_ENVIRONMENT} environment"
-            }
+        success {
+            // Send notification email on success with logs as an attachment.
+            emailext(
+                subject: "Pipeline Succeeded",
+                body: "The Jenkins pipeline has succeeded.",
+                to: "your@email.com",
+                attachLog: true
+            )
         }
     }
 }
-
