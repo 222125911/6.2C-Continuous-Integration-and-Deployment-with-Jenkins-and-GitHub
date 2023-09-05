@@ -2,38 +2,52 @@ pipeline {
     agent any
 
     stages {
+
         stage('Build') {
             steps {
+                echo "test"
                 // Use your chosen build automation tool (e.g., Maven) to compile and package the code.
             }
         }
+
         stage('Unit and Integration Tests') {
             steps {
+                echo "test"
                 // Use your chosen test automation tools to run unit and integration tests.
             }
         }
+
         stage('Code Analysis') {
             steps {
+                echo "test"
                 // Integrate a code analysis tool (e.g., SonarQube) to analyze the code.
             }
         }
+
         stage('Security Scan') {
             steps {
+                echo "test"
                 // Integrate a security scanning tool (e.g., OWASP ZAP) to identify vulnerabilities.
             }
         }
+
         stage('Deploy to Staging') {
             steps {
+                echo "test"
                 // Deploy the application to a staging server (e.g., AWS EC2).
             }
         }
+
         stage('Integration Tests on Staging') {
             steps {
+                echo "test"
                 // Run integration tests on the staging environment.
             }
         }
+
         stage('Deploy to Production') {
             steps {
+                echo "test"
                 // Deploy the application to a production server (e.g., AWS EC2).
             }
         }
