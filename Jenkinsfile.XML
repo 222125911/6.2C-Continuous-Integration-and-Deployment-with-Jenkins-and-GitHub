@@ -60,7 +60,7 @@ pipeline {
                 mail to: "dylan21davies@gmail.com",
                 subject: "Pipeline Failed",
                 body: "The Jenkins pipeline has failed. Please check the attached logs for details.",
-                attachLog: true
+                
             
         }
         success {
@@ -69,7 +69,7 @@ pipeline {
                 mail to: "dylan21davies@gmail.com",
                 subject: "Pipeline Succeeded",
                 body: "The Jenkins pipeline has succeeded.",
-                attachLog: true
+                
             
         }
     }
